@@ -1,19 +1,84 @@
-<script type='text/javascript'>
-	function initEmbeddedMessaging() {
-		try {
-			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Welcome — Embedded Messaging Demo</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      background: #f7f8fa;
+      color: #111827;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+      padding: 1.5rem;
+      max-width: 900px;
+      width: 100%;
+    }
+    h1 { margin: 0 0 .25rem 0; font-size: 1.75rem; }
+    p { margin: 0; color: #475569; }
+    #embedded-messaging-root {
+      margin-top: 1rem;
+      min-height: 200px;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#94a3b8;
+      background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+    }
+    .note { margin-top:.75rem; font-size:.9rem; color:#64748b; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Welcome</h1>
+    <p>Welcome to the Embedded Messaging demo page. The embedded service bootstrap will initialize when the external script loads.</p>
 
-			embeddedservice_bootstrap.init(
-				'00DgL00000098b7',
-				'alltestspoc',
-				'https://orgfarm-699ab99d32-dev-ed.develop.my.site.com/ESWalltestspoc1756399368165',
-				{
-					scrt2URL: 'https://orgfarm-699ab99d32-dev-ed.develop.my.salesforce-scrt.com'
-				}
-			);
-		} catch (err) {
-			console.error('Error loading Embedded Messaging: ', err);
-		}
-	};
-</script>
-<script type='text/javascript' src='https://orgfarm-699ab99d32-dev-ed.develop.my.site.com/ESWalltestspoc1756399368165/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+    <!-- Placeholder where embedded messaging UI may appear (depends on your Salesforce configuration) -->
+    <div id="embedded-messaging-root">Embedded messaging will load here after the script initializes.</div>
+
+    <p class="note">If the embedded UI doesn't appear, open the browser console to check for errors (CORS / CSP / incorrect URLs are common issues).</p>
+  </div>
+
+  <!-- Your init + bootstrap script (unchanged) -->
+  <script type="text/javascript">
+    function initEmbeddedMessaging() {
+      try {
+        embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+
+        embeddedservice_bootstrap.init(
+          '00DgL00000098b7',
+          'alltestspoc',
+          'https://orgfarm-699ab99d32-dev-ed.develop.my.site.com/ESWalltestspoc1756399368165',
+          {
+            scrt2URL: 'https://orgfarm-699ab99d32-dev-ed.develop.my.salesforce-scrt.com'
+          }
+        );
+      } catch (err) {
+        console.error('Error loading Embedded Messaging: ', err);
+      }
+    };
+  </script>
+
+  <script type="text/javascript"
+    src="https://orgfarm-699ab99d32-dev-ed.develop.my.site.com/ESWalltestspoc1756399368165/assets/js/bootstrap.min.js"
+    onload="initEmbeddedMessaging()"></script>
+
+  <noscript>
+    <p style="text-align:center;color:#ff4d4f;margin-top:1rem;">JavaScript is required for embedded messaging to work.</p>
+  </noscript>
+</body>
+</html>
